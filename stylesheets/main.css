@@ -1,0 +1,536 @@
+﻿/*******************************************************************************
+* Basic style
+*******************************************************************************/
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: grey; /* font color; 00=no color; ff=full color */
+    /*line-height: 1.8;*/
+    vertical-align: baseline;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+  box-sizing: border-box;
+  color: grey;
+  font-size: 16px;
+  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+  line-height: 1.8/*1.5*/;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0px 0px;
+    font-weight: 700;
+    /*color:#222222;*/
+    font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+h2 {
+    padding-bottom: 10px;
+    font-size: 32px;
+    background: url('../images/bg_hr.png') repeat-x bottom;
+}
+
+h3 {
+    padding-top: 30px; /* space from top paragraph; for project_section */
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 21px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+li {
+  margin-left: 40px
+}
+
+b {
+    color: #ff6f6f;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #ff6f6f;
+    text-shadow: none;
+
+    transition: color 0.5s ease;
+    transition: text-shadow 0.5s ease;
+    -webkit-transition: color 0.5s ease;
+    -webkit-transition: text-shadow 0.5s ease;
+    -moz-transition: color 0.5s ease;
+    -moz-transition: text-shadow 0.5s ease;
+    -o-transition: color 0.5s ease;
+    -o-transition: text-shadow 0.5s ease;
+    -ms-transition: color 0.5s ease;
+    -ms-transition: text-shadow 0.5s ease;
+}
+a:hover, a:focus {text-decoration: underline;}
+
+.some_small_font {
+    /*border: 3px solid #73AD21;*/
+    font-size: 12px;
+}
+
+.indent {
+     /*padding-left: 60px;*/
+     padding-left: 30px;
+}
+
+.main {
+    width: 100%;
+}
+
+#pre_view, #main_view, #re_view, #proceed {
+    position: relative;
+    max-width: 800px;
+    padding: 0px 10px 40px; /* top, left, btm, right */
+    margin: 0 auto;
+}
+
+.separator {
+    position:absolute;
+    left: 0px;
+    right: 0px;
+    height: 2px;
+    background-color: #e7e7e7;
+}
+
+
+
+/*******************************************************************************
+* header
+*******************************************************************************/
+
+#project_title { /* for h1 */
+    margin: 0;
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+#project_tagline { /* for h6*/
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.fheader {
+    background-color: rgb(230,230,230);
+    width:100%;
+    height:60px;
+    position: fixed;
+    opacity: 0.8;
+    z-index: 100; /* large number means front */
+}
+
+.fheader_github_logo {
+    /*border: 3px solid #73AD21;*/
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 10; /* large z-index = forefront */
+    background: url("../images/github.png");
+    background-size: 150px 50px; /* reduce the size of image into 50px*/
+    background-repeat: no-repeat;
+    width: 150px; /* width of anchor */
+    height: 50px; /* height of anchor */
+    opacity: 0.5;
+}
+
+.fheader_title {
+    /*border: 03px solid #73AD21;*/
+    position: absolute;
+    top: 5px; /* top=5; line-height=50; btm=5; total=60 */
+    left: 50%;
+    font-size: 16px;
+    line-height:50px;
+    transform: translate(-50%, 0%);
+}
+
+.fheader_span_login {
+    /*border: 1px solid #73AD21;*/
+    position: absolute;
+    color: #000;
+    text-align: right;
+    top: 15px;
+    right: 150px;
+    /*width: 200px; /* width of anchor */
+    height: 30px; /* height of anchor */
+    opacity: 0.5;
+    cursor: default;
+}
+.fheader_login, .fheader_score, .fheader_email {
+    /*border: 1px solid #73AD21;*/
+    position: absolute;
+    top: 15px;
+    right: 105px;
+    /*z-index: 10; /* large z-index = forefront */
+    background: url("../images/login_icon.png");
+    background-size: 30px 30px; /* reduce the size of image into 40px*/
+    background-repeat: no-repeat;
+    width: 30px; /* width of anchor */
+    height: 30px; /* height of anchor */
+    opacity: 0.5;
+    cursor: pointer;
+}
+/*.fheader_login {
+    cursor: pointer;
+}*/
+.fheader_score {
+    right: 60px;
+    background: url("../images/score_icon.png");
+    background-size: 30px 30px; /* reduce the size of image into 40px*/
+}
+.fheader_email {
+    right: 15px;
+    background: url("../images/email_icon.png");
+    background-size: 30px 30px; /* reduce the size of image into 40px*/
+}
+
+/* should be deleted later */
+#fheader_manager {
+    /*border: 1px solid #73AD21;*/
+    position: absolute;
+    top: 10px; /* top=5; line-height=50; btm=5; total=60 */
+    right: 5px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height:50px;
+}
+#fheader_manager a {
+    /*border: 3px solid #73AD21;*/
+    font-size: 13px;
+    font-weight: 300;
+}
+
+
+
+/*******************************************************************************
+* cover
+*******************************************************************************/
+
+.cover, .header_1, .header_2, .header_3, .header_4 {
+    /*border: 3px solid #73AD21;*/
+    background: SkyBlue; /* For browsers that do not support gradients */
+    text-align: center;
+    padding-top: 80px;
+    margin-bottom: 80px;
+}
+.header_1 {
+    background: #cf9;
+    margin-bottom: 0px;
+}
+.header_2 {
+    background: #c9f;
+    margin-bottom: 0px;
+}
+.header_3 {
+    background: #fc9;
+    margin-bottom: 0px;
+}
+.header_4 {
+    background: #f9c;
+    margin-bottom: 0px;
+}
+
+.container {
+    /*border: 3px solid #ff0000;*/
+    position: relative;
+    top: 0px;
+    left: 50%;
+    width: 960px;
+    height: 320px;
+    transform: translate(-50%, 0%);
+}
+
+.circle {
+    /*border: 3px solid #73AD21;*/
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    border-radius: 50%;
+    line-height:200px;
+    float: left;
+    color: grey;
+    transition: background-color 1.0s ease, font-size 1.0s ease;
+}
+.circle:hover {
+    color: #ff6f6f;
+    cursor: pointer;
+    font-size: 26px;
+}
+
+#circle_1 {
+    background: #cf9;
+}
+#circle_1:hover{
+    background: #dfa;
+}
+#circle_2 {
+    background: #c9f;
+}
+#circle_2:hover{
+    background: #daf;
+}
+#circle_3 {
+    background: #fc9;
+}
+#circle_3:hover{
+    background: #fda;
+}
+#circle_4 {
+    background: #f9c;
+}
+#circle_4:hover{
+    background: #fad;
+}
+
+
+
+/*******************************************************************************
+* login and proceed
+*******************************************************************************/
+
+#login_outer, #score_outer {
+    position: fixed;
+    z-index: 998; /* sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* enable scroll if needed */
+    background-color: rgb(255,255,255); /* fallback color; ?? whit is fallback color */
+    background-color: rgba(255,255,255,0.3); /* opacity */
+}
+
+#login_inner, #score_inner {
+    /*border: 3px solid #73AD21;*/
+    text-align: center;
+    position: fixed;
+    z-index: 999; /* sit on top */
+    padding-top: 50px;
+    left: 50%;
+    top: 200px;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: 120px; 
+    overflow: auto; /* enable scroll if needed */
+    background-color: rgb(255,255,255); /* fallback color; ?? whit is fallback color */
+    background-color: rgba(255,255,255,0.5); /* opacity */
+    list-style: none; /* remove bullet; applied only to score_inner */
+}
+
+#score_inner li {
+    /*border: 3px solid #73AD21;*/
+    display: inline; /* list in horizontal */
+}
+
+.input_login, .input_test, .input_quiz {
+    margin: 2px;
+    background-color: #f0f0f0;
+    font-size: 12px;
+    width: 200px;
+    height: 30px;
+    padding-left: 6px;
+}
+.submit_login, .submit_test, .submit_quiz, .submit_proceed, .submit_score {
+    /*border: 3px solid #73AD21;*/
+    margin: 2px;
+    background-color: grey;
+    font-size: 12px;
+    width: 100px;
+    height: 30px;
+    color: white;
+}
+.submit_quiz {
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+.submit_test {
+    margin-left: 80px;
+}
+.submit_login:hover, .submit_test:hover, .submit_quiz:hover, .submit_proceed:hover, .submit_score:hover {
+    background-color: #ff6f6f;
+    cursor: pointer;
+}
+
+.span_login, .span_test, .span_quiz, .span_proceed {
+    font-size: 12px;
+}
+
+.span_quiz, .span_test {
+    margin-left: 10px;
+}
+
+.span_hint {
+    text-decoration: none;
+    color: #ff6f6f;
+    text-shadow: none;
+
+    transition: color 0.5s ease;
+    transition: text-shadow 0.5s ease;
+    -webkit-transition: color 0.5s ease;
+    -webkit-transition: text-shadow 0.5s ease;
+    -moz-transition: color 0.5s ease;
+    -moz-transition: text-shadow 0.5s ease;
+    -o-transition: color 0.5s ease;
+    -o-transition: text-shadow 0.5s ease;
+    -ms-transition: color 0.5s ease;
+    -ms-transition: text-shadow 0.5s ease;
+}
+
+.span_hint:hover {
+    cursor: pointer;
+}
+
+/*******************************************************************************
+* tooltip
+*******************************************************************************/
+
+/*.tooltip{
+    display: inline;
+    position: relative;
+}
+		
+.tooltip:hover:after{
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 26px;
+    color: #fff;
+    content: attr(custom_tooltip);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+}
+		
+.tooltip:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}*/
+
+
+
+/********************************* for animation of background ************************************/
+#grad1 {
+    height: 1000px;
+    background: DeepSkyBlue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(DeepSkyBlue, purple); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(DeepSkyBlue, purple); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(DeepSkyBlue, purple); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(DeepSkyBlue, purple); /* Standard syntax (must be last) */
+}
+
+@-webkit-keyframes color_change {
+	/*14% { background-color: red; }
+    29% { background-color: orange; }
+    43% { background-color: yellow; }
+    57% { background-color: green; }
+    71% { background-color: blue; }
+    86% { background-color: midnightblue; }
+	100% { background-color: purple; }*/
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@-moz-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@-ms-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@-o-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@keyframes color_change {
+	0% { background-color: rgb(204,255,153); }
+	100% { background-color: rgb(138,184,0); }
+}
+
+
+/*@-webkit-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+@-moz-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@-ms-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@-o-keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}
+@keyframes color_change {
+	17% { background-color: rgb(255,127,127); }
+    33% { background-color: rgb(255,190,127); }
+    50% { background-color: rgb(255,255,127); }
+    67% { background-color: rgb(127,255,127); }
+    83% { background-color: rgb(127,127,255); }
+	100% { background-color: rgb(200,127,255); }
+}*/

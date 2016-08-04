@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript" src="../javascripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../javascripts/header.js"></script>
+    <script type="text/javascript" src="../javascripts/proceed.js"></script>
+    <script type="text/javascript" src="../javascripts/quiz.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
+    <title>Flexibility method</title>
+</head>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+
+    <!-- HEADER -->
+    <div class="header_2">
+        <a class="fheader_github_logo" href="https://pages.github.com"></a>
+        <span class="fheader_span_login"></span>
+        <a class="fheader_login"></a>
+        <a class="fheader_score"></a>
+        <a class="fheader_email" href="mailto:ironbell@kyungnam.ac.kr"></a>
+        <header>
+            <h1 id="project_title">연성법(flexibility method)</h1><br /><br />
+            <h4 id="project_tagline"></h4><br />
+        </header>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div>
+        <section class="main">
+
+        <!--########## PRE VIEW ##########-->
+        <div id="pre_view" hidden>
+            <h3><a name="pre_veiw"></a>예습과제</h3>
+            <ul class="indent">
+                <li>교재 383쪽~384쪽의 "10.1 부정정력"을 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
+                <li>교재 384쪽~390쪽의 "10.2 변형일치법의 원리"에서 예제 10-1까지 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
+            </ul>
+        </div>
+        <div class="separator"></div>
+
+        <!--########## MAIN VIEW ##########-->
+        <div id="main_view" hidden>
+            <h3><a name="definition"></a>응력법(force method) 또는 연성법(flexibility method)</h3>
+            <ul class="indent">
+                <li>
+                    부정정구조물의 해석을 위해서는 평형조건식과 <b>적합조건식(equation of compatibility)</b>을 적용하는데, <b>힘을 변수</b>로 하는 방법을 응력법 또는 연성법이라 한다.
+                </li>
+                <li>
+                    연성법에는 여러 방법이 있으나, 여기에서는 변형일치법(method of superposition)을 소개한다.
+                </li>
+            </ul>
+            <h3><a name="principle"></a>변형일치법의 원리</h3>
+            <ul class="indent">
+                <li>
+                    변형일치법은 해석하기 어려운 부정정구조물을 해석하기 쉬운 여러 개의 정정구조물로 분해한다.
+                </li>
+                <li>
+                    아래 그림 a)는 1차 부정정구조물인데, 여기에서 지점반력은 4개이므로 평형조건식 3개 만으로는 지점반력을 계산할 수 없다. 이 4개의 지점반력 중에서 \(V_c\)를 구조물의 안정적인 지지를 위해 필요한 최소한의 지점반력 수 3개를 초과하는 <b>잉여력</b>으로 설정할 수 있다.
+                    <p><img src="images\02.01.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    부정정구조물인 그림 a)는 정정구조물인 그림 b)와 c)로 분리할 수 있고, 그림 b)와 c)를 합하여 중첩(superposition)하면 그림 a)와 같아야 한다. 따라서 그림 b)와 c)에서 계산한 지점반력과 변형을 합하여 중첩하면 그림 a)의 지점반력과 변형과 동일해야 한다.
+                </li>
+                <li>
+                    한편, 그림 a)에서 점 \(C\)는 이동단이므로 잉여력이 작용하는 위치와 방향인 수직방향 변형이 \(0\)이다. 따라서 그림 b)와 c)에서 점 \(C\)의 수직방향 변형을 각각 계산하여 중첩하면 그림 a)의 점 \(C\)의 변위와 같아야 하므로 그 값이 \(0\)이어야 한다. 이러한 <b>변형과 관련된 식이 적합조건식</b>이다.
+                </li>
+                <li>
+                    이를 이용하면 잉여력 \(V_c\)를 계산할 수 있다. 그 다음에는 정정구조물인 그림 b)와 c)에서 나머지 지점반력을 계산하고 이를 중첩하면 부정정구조물인 그림 a)의 지점반력을 계산할 수 있다.
+                </li>
+                <li>
+                    위 그림의 경우, 부정정구조물인 그림 a)의 지점반력은 각각 \(M_A=M_{A1}+M_{A2}, \, H_A=H_{A1}+H_{A2}, \, V_A=V_{A1}+V_{A2}\)이다.
+                </li>
+                <li>
+                    <a href="" class="li_test">확인 질문</a>
+                    <div id="test_1" hidden>
+                        "고정단의 회전각의 크기는 \(0\)이다", "회전단의 \(x\)방향 변위는 \(0\)이다", "기둥과 보가 연결된 강절점에서 기둥과 보의 회전각은 동일하다" 등과 같이 변형이 만족시켜야 하는 조건을 나타내는 식의 이름을 쓰시오.<br />
+                        <input type="text" id="input_test_1" class="input_test" IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
+                        <input type="submit" id="submit_test_1" class="submit_test" value="Submit">
+                        <span id="span_test_1" class="span_test"></span>
+                    </div>
+                </li>
+            </ul>
+            <h3><a name="procedure"></a>변형일치법의 절차</h3>
+            <ol class="indent">
+                <li>
+                    지점반력 중의 하나를 <b>잉여력</b>으로 선택한다.
+                </li>
+                <li>
+                    잉여력이 발생하는 위치와 방향의 지지(support)를 제거하여 <b>정정 해제구조물(released structures)</b>을 생성한다.
+                </li>
+                <li>
+                    평형조건식을 바탕으로 <b>원래의 하중이 작용하는 해제구조물</b>에서 잉여력이 발생하는 위치와 방향의 변형(변위나 처짐 또는 회전각 등) \(\Delta_1\)을 계산한다.
+                </li>
+                <li>
+                    평형조건식을 바탕으로 원래의 하중 대신 <b>잉여력만 작용하는 해제구조물</b>에서 잉여력이 발생하는 위치와 방향의 변형 \(\Delta_2\)를 계산한다.
+                </li>
+                <li>
+                    <b>적합조건식</b>을 적용하여 \(\Delta_1 + \Delta_2 = 0\) 식을 세우고, 이 식의 변수인 <b>잉여력을 계산</b>한다. 여기에서 처짐은 \(+x, \, +y, \, \)반시계방향을 \(+\)로, 반대는 \(-\)로 한다.
+                </li>
+                <li>
+                    원래의 하중이 작용하는 해제구조물과 잉여력만 작용하는 해제구조물의 <b>지점반력을 중첩</b>하여 주어진 부정정구조물의 지점반력을 계산한다.
+                </li>
+            </ol>
+            <ul class="indent">
+                <li>
+                    <a href="" class="li_test">확인 질문</a>
+                    <div id="test_2" hidden>
+                        1차 부정정구조물의 회전단에서의 수직 지점반력 \(V_B\)를 잉여력으로 선택했을 때, 원래 하중과 잉영력에 의한 해제구조물의 잉여력에 해당되는 수직변위가 각각 \(-23mm, \, 14V_Bmm\)이다. 지점반력 \(V_B\)를 계산하시오.<br />
+                        <input type="text" id="input_test_2" class="input_test" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                        <input type="submit" id="submit_test_2" class="submit_test" value="Submit">
+                        <span id="span_test_2" class="span_test"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="separator"></div>
+
+        <!--########## RE VIEW ##########-->
+        <div id="re_view" hidden>
+            <h3><a name="re_view"></a>복습 퀴즈</h3>
+            <ol class="indent">
+                <li>
+                    1차 부정정구조물의 고정단에서의 모멘트 지점반력 \(M_A\)를 잉여력으로 선택했을 때, 원래 하중과 잉여력에 의한 해제구조물의 잉여력에 해당되는 회전각이 각각 \(0.04 \, rad, \, -0.008M_A \, rad\)이다. 지점반력 \(M_A\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_1" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
+                    <input type="submit" id="submit_quiz_1" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_1" class="span_quiz"></span>
+                </li>
+                <li>
+                    다음에서 \(V_B\)를 잉여력으로 선택했을 때, 원래 하중이 작용하는 해제구조물의 점 B의 수직처짐을 계산하시오. 단, 부재의 \(EI=81/8 \, kN \cdot m^2\)이다.<br />
+                    <img src="images\quiz.02.02.png" onload="this.width/=2;this.onload=null;"><br />
+                    <input type="text" id="input_quiz_2" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(m\)
+                    <input type="submit" id="submit_quiz_2" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_2" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 2에서 잉여력이 작용하는 해제구조물의 점 B의 수직처짐을 계산하시오.<br />
+                    <input type="text" id="input_quiz_3" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(m\)
+                    <input type="submit" id="submit_quiz_3" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_3" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 2에서 적합조건식을 적용하여 지점반력 \(V_B\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_4" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                    <input type="submit" id="submit_quiz_4" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_4" class="span_quiz"></span>
+                </li>
+                <li>
+                    다음에서 점 \(V_B\)를 잉여력으로 선택했을 때, 원래 하중이 작용하는 해제구조물의 점 B의 수직처짐을 계산하시오. 단, 부재의 \(EI=4500 kN \cdot m^2\)이다.<br />
+                    <img src="images\quiz.02.05.png" onload="this.width/=2;this.onload=null;"><br />
+                    <input type="text" id="input_quiz_5" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(m\)
+                    <input type="submit" id="submit_quiz_5" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_5" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 5에서 잉여력이 작용하는 해제구조물의 점 B의 수직처짐을 계산하시오.<br />
+                    <input type="text" id="input_quiz_6" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(m\)
+                    <input type="submit" id="submit_quiz_6" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_6" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 5에서 적합조건식을 적용하여 지점반력 \(V_B\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_7" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                    <input type="submit" id="submit_quiz_7" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_7" class="span_quiz"></span>
+                </li>
+                <li>
+                    다음에서 점 \(V_C\)를 잉여력으로 선택했을 때, 원래 하중이 작용하는 해제구조물의 점 C의 수직처짐을 계산하시오. 단, 부재의 \(EI=200/3 kN \cdot m^2\)이다.<br />
+                    <img src="images\quiz.02.08.png" onload="this.width/=2;this.onload=null;"><br />
+                    <input type="text" id="input_quiz_8" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(m\)
+                    <input type="submit" id="submit_quiz_8" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_8" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 8에서 잉여력이 작용하는 해제구조물의 점 C의 수직처짐을 계산하시오.<br />
+                    <input type="text" id="input_quiz_9" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(m\)
+                    <input type="submit" id="submit_quiz_9" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_9" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 8에서 적합조건식을 적용하여 지점반력 \(V_C\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_10" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                    <input type="submit" id="submit_quiz_10" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_10" class="span_quiz"></span>
+                </li>
+            </ol>
+        </div>
+        <div class="separator"></div>
+
+        <!--########## PROCEED ##########-->
+        <div id="proceed" hidden>
+            <h3><a name="proceed"></a>다음 단계로</h3>
+            <div class="indent">
+                <input type="submit" class="submit_proceed" id="submit_proceed" value="내용 보여주기" /><br /><span class="span_proceed" id="span_proceed"></span><br /><br />
+            </div>
+        </div>
+
+        </section>
+    </div>
+
+</body>
+</html>

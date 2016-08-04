@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript" src="../javascripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../javascripts/header.js"></script>
+    <script type="text/javascript" src="../javascripts/proceed.js"></script>
+    <script type="text/javascript" src="../javascripts/quiz.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
+    <title>Slope deflection method</title>
+</head>
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+
+    <!-- HEADER -->
+    <div class="header_3">
+        <a class="fheader_github_logo" href="https://pages.github.com"></a>
+        <span class="fheader_span_login"></span>
+        <a class="fheader_login"></a>
+        <a class="fheader_score"></a>
+        <a class="fheader_email" href="mailto:ironbell@kyungnam.ac.kr"></a>
+        <header>
+            <h1 id="project_title">처짐각법(slope deflection method)</h1><br /><br />
+            <h4 id="project_tagline"></h4><br />
+        </header>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div>
+        <section class="main">
+
+        <!--########## PRE VIEW ##########-->
+        <div id="pre_view" hidden>
+            <h3><a name="pre_veiw"></a>예습과제</h3>
+            <ul class="indent">
+                <li>교재 423쪽~428쪽의 "11.1 처짐각 방정식의 유도"를 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
+                <li>교재 428쪽~430쪽의 "11.2 구조물해석"에서 예제 11-1까지 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
+                <li>교재 436쪽~440쪽의 "11.4 횡변위가 발생하는 골조해석"에서 예제 11-5까지 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
+            </ul>
+        </div>
+        <div class="separator"></div>
+
+        <!--########## MAIN VIEW ##########-->
+        <!--inline script for left-align of MathJax equation-->
+        <script>
+            if (MathJax) {
+                MathJax.Hub.Config({ displayAlign: "left" });
+                MathJax.Hub.Rerender();
+            }
+        </script>
+        <!--script for left-align of MathJax equation-->
+        <div id="main_view" hidden>
+            <h3><a name="introduction"></a>개요</h3>
+            <ul class="indent">
+                <li>
+                    처짐각법은 변위를 변수로 하는 변위법(displacement method)으로서, 휨모멘트를 지지하는 선형 부재인 <b>보와 기둥</b>으로 구성된 구조물에 적용할 수 있다.
+                </li>
+                <li>
+                    처짐각 방정식은 임의의 하중과 임의의 지지조건을 갖고 있는 선형부재로부터 유도할 수 있다. 이 과정에서 <b>축력은 무시하고 휨모멘트는 시계방향이 \(+\)</b>이다.
+                    부재의 끝단에 작용하는 휨모멘트를 <b>재단모멘트(member end moment)</b>라고 한다.
+                </li>
+                <li>
+                    아래 그림은 임의의 구조물의 일부로서 재단모멘트를 계산하고 처짐각 방정식을 유도하기 위한 대상을 나타낸 것이다.
+                    <p><img src="images\03.01.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    고정단은 모멘트 지점반력이 발생하고 고정절점은 모멘트 절점반력이 발생한다. 이와 같이 모멘트 반력이 발생하는 고정단이나 고정절점인 것을 연속이라고 한다.
+                </li>
+                <li>
+                    그리고 부재의 양 끝단이 각각 고정단이거나 고정절점이면 이를 <b>양단연속</b>이라 한다. 만약, 부재의 한쪽 끝단은 연속이지만 다른 쪽이 연속이 아니면 이를 <b>타단힌지</b>라고 한다.
+                </li>
+                <li>
+                    양 끝단이 고정절점이므로 <b>양단연속인 부재 AB</b>에서 점 A와 점 B의 재단모멘트 \(M_{AB}, \, M_{BA}\)의 발생원인은 다음의 4개 이다.
+                    <ol>
+                        <li>
+                            부재 왼쪽 끝단 \(A\)의 회전각 \(\theta_A\)에 의해서 부재의 양단 A와 B에 발생하는 휨모멘트로 \(M_{AB1}, \, M_{BA1}\)
+                        </li>
+                        <li>
+                            부재 오른쪽 끝단 \(B\)의 회전각 \(\theta_B\)에 의해서 부재의 양단 A와 B에 발생하는 휨모멘트 \(M_{AB2}, \, M_{BA2}\)
+                        </li>
+                        <li>
+                            부재 양단의 처짐의 차이 \(\Delta_{AB}\)에 의해서 부재의 양단 A와 B에 발생하는 휨모멘트 \(M_{AB3}, \, M_{BA3}\)
+                        </li>
+                        <li>
+                            부재 내에 작용하는 하중에 의해서 부재의 양단 A와 B에 발생하는 휨모멘트 : \(M_{AB4}, \, M_{BA4}\)
+                        </li>
+                    </ol>
+                <li>
+                    부재에서는 위의 4가지 경우가 모두 발생할 수 있으므로, 부재 AB의 끝단 A에 작용하는 재단모멘트 \(M_{AB}\)와 끝단 B에 작용하는 재단모멘트 \(M_{BA}\) 다음과 같다.
+                    $$ M_{AB} = M_{AB1} + M_{AB2} + M_{AB3} + M_{AB4} \\
+                       M_{BA} = M_{BA1} + M_{BA2} + M_{BA3} + M_{BA4}  $$
+                </li>
+                <li>
+                    재단모멘트의 발생원인 4가지를 한꺼번에 고려하면 복잡하기 때문에, 다음과 같이 1가지의 발생원인만을 따로 고려하여 재단모멘트를 계산한다.
+                </li>
+                <li>
+                    <a href="" class="li_test">확인 질문</a>
+                    <div id="test_1" hidden>
+                        어떤 부재가 양쪽 끝단에서 모두 다른 부재와 고정절점으로 연결되는 경우를 무엇이라 하는지 쓰시오.<br />
+                        <input type="text" id="input_test_1" class="input_test" ondrop="return false;" onpaste="return false;">
+                        <input type="submit" id="submit_test_1" class="submit_test" value="Submit">
+                        <span id="span_test_1" class="span_test"></span>
+                    </div>
+                </li>
+            </ul>
+            <h3><a name="equation1"></a>점 A의 회전각에 의한 재단모멘트</h3>
+            <ul class="indent">
+                <li>
+                    다음 그림은 부재 AB에서 재단모멘트를 발생시키는 원인 중 점 A의 회전각 \(\theta_A\)에 의해서만 재단모멘트가 발생하는 경우, 즉 \(\theta_A \ne 0, \, \theta_B = 0, \, \Delta_{AB} = 0, \,\)부재내 하중 \(= 0\)인 경우를 나타낸 것이다.
+                    <p><img src="images\03.02.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    여기에서 BMD를 작성하고 공액보법으로 \(\theta_A, \, \theta_B\)를 계산하면 다음과 같이 \(M_{AB1}, \, M_{BA1}\)을 계산할 수 있다.<br />
+                    $$ M_{AB1}=\frac{4EI}{L} \theta_A \qquad M_{BA1}=\frac{2EI}{L} \theta_A $$
+                </li>
+            </ul>
+            <h3><a name="equation2"></a>점 B의 회전각에 의한 재단모멘트</h3>
+            <ul class="indent">
+                <li>
+                    다음 그림은 부재 AB에서 재단모멘트를 발생시키는 원인 중 점 B의 회전각 \(\theta_B\)에 의해서만 재단모멘트가 발생하는 경우, 즉 \(\theta_B = 0, \, \theta_B \ne 0, \, \Delta_{AB} = 0, \,\)부재내 하중 \(= 0\)인 경우를 나타낸 것이다.
+                    <p><img src="images\03.03.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    여기에서 BMD를 작성하고 공액보법으로 \(\theta_A, \, \theta_B\)를 계산하면 다음과 같이 \(M_{AB2}, \, M_{BA2}\)를 계산할 수 있다.<br />
+                    $$ M_{AB2}=\frac{2EI}{L} \theta_B \qquad M_{BA2}=\frac{4EI}{L} \theta_B $$
+                </li>
+            </ul>
+            <h3><a name="equation3"></a>부재 양단의 처짐의 차이에 의한 재단모멘트</h3>
+            <ul class="indent">
+                <li>
+                    다음 그림은 부재 AB에서 재단모멘트를 발생시키는 원인 중 양단의 처짐의 차이 \(\Delta_{AB}\)에 의해서만 재단모멘트가 발생하는 경우, 즉 \(\theta_B = 0, \, \theta_B = 0, \, \Delta_{AB} \ne 0, \,\)부재내 하중 \(= 0\)인 경우를 나타낸 것이다.
+                    <p><img src="images\03.04.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    여기에서 BMD를 작성하고 공액보법으로 \(\theta_A, \, \theta_B\)를 계산하면 다음과 같이 \(M_{AB3}, \, M_{BA3}\)를 계산할 수 있다.<br />
+                    $$ M_{AB3}=-\frac{6EI}{L^2}\Delta_{AB} \qquad M_{BA3}=-\frac{6EI}{L^2} \Delta_{AB} $$
+                </li>
+                <li>
+                    <a href="" class="li_test">확인 질문</a>
+                    <div id="test_2" hidden>
+                        양단연속인 부재의 왼쪽과 오른쪽 끝단의 처짐이 각각 \(10mm, \, 10mm\)아다. 처짐의 차이 \(\Delta\)를 계산하시오.<br />
+                        <input type="text" id="input_test_2" class="input_test" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
+                        <input type="submit" id="submit_test_2" class="submit_test" value="Submit">
+                        <span id="span_test_2" class="span_test"></span>
+                    </div>
+                </li>
+            </ul>
+            <h3><a name="equation4"></a>부재 내에 작용하는 하중에 의한 재단모멘트</h3>
+            <ul class="indent">
+                <li>
+                    다음 그림은 부재 AB에서 재단모멘트를 발생시키는 원인 중 부재 내에 작용하는 하중에 의해서만 재단모멘트가 발생하는 경우, 즉 \(\theta_B = 0, \, \theta_B = 0, \, \Delta_{AB} = 0, \,\)부재내 하중 \(\ne 0\)인 경우를 나타낸 것이다. 부재 내에 작용하는 하중은 매우 다양한데, 아래 그림은 부재 중앙에 집중하중 \(P\)가 작용하는 경우이다.
+                    <p><img src="images\03.05.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    여기에서 BMD를 작성하고 공액보법으로 \(\theta_A, \, \theta_B\)를 계산하면 다음과 같이 \(M_{AB4}, \, M_{BA4}\)를 계산할 수 있다.<br />
+                    $$ M_{AB4}=-\frac{PL}{8} \qquad M_{BA4}=\frac{PL}{8} $$
+                </li>
+                <li>
+                    위에서 구한 \(M_{AB4}, \, M_{BA4}\)는 고정단모멘트(fixed end moment)라고 하며 다른 값과 구별하기 위해서 다음과 같이 \(C_{AB4}, \, C_{BA4}\)로 표기한다.<br />
+                    $$ M_{AB4}=C_{AB4}=-\frac{PL}{8} \qquad M_{BA4}=C_{BA4}=\frac{PL}{8} $$
+                </li>
+            </ul>
+            <h3><a name="equation"></a>양단연속인 부재 AB의 처짐각 방정식</h3>
+            <ul class="indent">
+                <li>
+                    앞에서 계산한 부재 AB에 작용하는 재단모멘트들을 모두 합한 것을 부재 AB의 처짐각 방정식이라 하고, 그 값은 다음과 같다.
+                    $$ M_{AB} = M_{AB1} + M_{AB2} + M_{AB3} + M_{AB4} = \frac{4EI}{L}\theta_A + \frac{2EI}{L}\theta_B - \frac{6EI}{L^2}\Delta_{AB} + C_{AB} = 2Ek(2\theta_A + \theta_B-3\psi_{AB})+C_{AB} $$
+                    $$ M_{BA} = M_{BA1} + M_{BA2} + M_{BA3} + M_{BA4} = \frac{2EI}{L}\theta_A + \frac{4EI}{L}\theta_B - \frac{6EI}{L^2}\Delta_{AB} + C_{BA} = 2Ek(\theta_A + 2\theta_B-3\psi_{AB})+C_{BA} $$
+                </li>
+                <li>
+                    여기에서,
+                    $$ k=\frac{I}{L},  \, \psi_{AB}=\frac{\Delta_{AB}}{L} $$이고, \(C_{AB}, \, C_{BA}\)는 고정단모멘트로서 부재 내에 작용하는 하중에 따라 다른 값을 갖는다.
+                </li>
+            </ul>
+            <h3><a name="hinge_equation"></a>타단힌지인 부재 AB의 처짐각 방정식</h3>
+            <ul class="indent">
+                <li>
+                    지금까지 부재 AB가 양단연속이었는데, 만약 부재 AB가 타단힌지인 경우(양 끝단 중 한쪽이 연속이 아닌 경우)에는 재단모멘트가 달라지게 된다.
+                </li>
+                <li>
+                    부재 AB에서 <b>점 A는 연속이고 점 B는 연속이 아닌 타단힌지</b>인 경우, 위에서와 동일하게 4가지 원인에 따라 부재의 재단모멘트를 계산하면 다음과 같다.
+                    $$ M_{AB}=3Ek(\theta_A - \psi_{AB}) + H_{AB} \qquad M_{BA}=0 $$
+                </li>
+                <li>
+                    여기에서 \(H_{AB}\)는 타단힌지인 부재 내에 작용하는 하중에 의한 재단모멘트, 즉 고정단모멘트로서 하중에 따라 다른 값을 갖는다.
+                </li>
+            </ul>
+            <h3><a name="fixed_end_moment"></a>고정단모멘트(fixed end moment)</h3>
+            <ul class="indent">
+                <li>
+                    고정단모멘트는 부재 내에 작용하는 하중에 의한 재단모멘트이며, 하중의 크기, 종류, 위치에 따라, 그리고 양단연속 또는 타단힌지 조건에 따라 다음과 같은 값을 갖는다.
+                    <p><img src="images\03.06.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    고정단모멘트는 부재의 <b>왼쪽 끝단에서는 항상 음수, 반대쪽에서는 항상 양수</b>이다. 이는 타단힌지에서도 마찬가지이다.
+                </li>
+                <li>
+                    만약 위 그림의 타단힌지 부분에서 오른쪽 끝단이 연속이고 왼쪽 끝단이 연속이 아니라면, 오른쪽 끝단의 고정단모멘트는 위 그림과 동일한 크기지만 부호는 양수이고 왼쪽 끝단의 고정단모멘트는 모두 \(0\)이 된다.
+                </li>
+                <li>
+                    <a href="" class="li_test">확인 질문</a>
+                    <div id="test_3" hidden>
+                        등분포하중 \(w=2.5 kN/m\)가 작용하는 길이 \(4m\)의 타단힌지 부재의 오른쪽에 위치한 연속인 절점의 고정단모멘트를 계산하시오.<br>
+                        <input type="text" id="input_test_3" class="input_test" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
+                        <input type="submit" id="submit_test_3" class="submit_test" value="Submit">
+                        <span id="span_test_3" class="span_test"></span>
+                    </div>
+                </li>
+                <li>
+                    <a href="" class="li_test">확인 질문</a>
+                    <div id="test_4" hidden>
+                        중앙에 집중하중 \(P=10 kN\)이 작용하는 길이 \(4m\)의 양단연속 부재의 왼쪽 절점의 고정단모멘트를 계산하시오.<br>
+                        <input type="text" id="input_test_4" class="input_test" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
+                        <input type="submit" id="submit_test_4" class="submit_test" value="Submit">
+                        <span id="span_test_4" class="span_test"></span>
+                    </div>
+                </li>
+            </ul>
+            <h3><a name="procedure"></a>처짐각법의 해석 절차</h3>
+            <ol class="indent">
+                <li>
+                    구조물의 <b>부재의 수, 각 부재별 양단연속 또는 타단힌지 조건</b>을 파악한다.
+                </li>
+                <li>
+                    각 부재별로 고정단모멘트를 계산한다.
+                </li>
+                <li>
+                    부재의 지지조건을 바탕으로 각 부재들 끝단의 회전각의 크기, 지점의 처짐의 크기, 재단모멘트의 값 일부를 경계조건으로 파악한다.
+                </li>
+                <li>
+                    각 부재별로 처짐각방정식을 작성한다.
+                </li>
+                <li>
+                    부재들이 연결되는 절점에서의 평형조건식을 적용하고 여기에서 절점에서의 회전각을 계산한다.
+                </li>
+                <li>
+                    각 부재별로 앞에서 계산한 회전각을 처짐각방정식에 대입하여 재단모멘트를 계산한다.
+                </li>
+                <li>
+                    각 부재별로 앞에서 계산한 재단모멘트를 포함한 자유물체도를 작성하고 평형조건식을 적용하여 전단력을 계산한다.
+                </li>
+                <li>
+                    각 부재의 절점의 부재력 그대로, 또는 중첩하여 각 지점의 지점반력을 계산한다.
+                </li>
+            </ol>
+            <ul class="indent">
+                <li>
+                    여기에서 주목할 점은, 이상의 절차가 정정구조물과 부정정구조물에 대한 구분을 하지 않는 다는 점이다. 즉, 처짐각법은 <b>정정구조물이나 부정정구조물을 구분하지 않고 동일한 방법과 절차</b>를 거쳐서 구조해석을 수행한다.
+                </li>
+            </ul>
+            <h3><a name="example"></a>예제</h3>
+            <ul class="indent">
+                <li>
+                    문제 : 다음의 2차 부정정구조물에서 처짐각법으로 재단모멘트와 지점반력을 계산하고 SFD와 BMD를 작성하시오. 단, 모든 부재에서 \(EI\)는 일정하다.
+                    <p><img src="images\03.07.png" onload="this.width/=2;this.onload=null;"></p>
+                </li>
+                <li>
+                    풀이
+                    <ol>
+                        <li>
+                            이 구조물은 부재 AB, 부재 BC로 구성되어 있다. 부재 AB는 점 A는 고정단, 점 B는 고정절점이므로 양단연속이다. 부재 BC는 점 B는 고정절점, 점 C는 자유단이므로 타단힌지이다.
+                        </li>
+                        <li>
+                            부재 AB는 양단연속이고 등분포하중이 작용하므로 \(C_{AB}=-wL^2/12=-2 \cdot 24^2 / 12 = -96 kN \cdot m = - C_{BA} \)이다.<br />
+                            부재 BC는 타단힌지이고 중앙에 집중하중이 작용하므로 \(H_{BC}=-3PL/16=-3 \cdot 12 \cdot 8 / 16 = -18 kN \cdot m \)이다.
+                        </li>
+                        <li>
+                            점 A는 고정단이므로 \(\theta_A=0\), 점 C는 연속이 아니므로 \(M_{CB}=0\)이다. 점 A, B, C에서 수직방향의 이동이 불가능하므로, 부재 AB, BC에서 양단의 처짐의 차이 \(\Delta_{AB}=0, \, \Delta_{BC}=0\)이므로 \(\psi_{AB}=0, \, \psi_{BC}=0\)다.
+                        </li>
+                        <li>
+                            \(L=24, \, \theta_{A}=0, \, \psi_{AB}=0, \, C_{AB} = -96 = -C_{BA}\)를 적용한 양단연속인 부재 AB의 처짐각방정식은 다음과 같다.
+                            $$ M_{AB} = 2Ek(2\theta_A + \theta_B-3\psi_{AB})+C_{AB} = 2E\frac{I}{24}(2 \cdot 0 + \theta_B - 3 \cdot 0) - 96 = \frac{EI}{12}\theta_B - 96 \\
+                            M_{BA} = 2Ek(\theta_A + 2\theta_B-3\psi_{AB})+C_{BA} = 2E\frac{I}{24}(0 + 2 \theta_B - 3 \cdot 0) + 96 = \frac{EI}{ 6}\theta_B + 96 $$
+                        </li>
+                        <li>
+                            \(L=8, \, \psi_{BC}=0, \, H_{BC} = -18, \, H_{CB}=0\)를 적용한 타단힌지인 부재 BC의 처짐각방정식은 다음과 같다.
+                            $$ M_{BC} = 3Ek(\theta_B - \psi_{BC}) + H_{BC} = 3E\frac{I}{8}(\theta_B - 0) - 18 = \frac{3EI}{8}\theta_B - 18 $$
+                        </li>
+                        <li>
+                            부재 AB, BC가 연결되는 절점 B에서 평형조건식을 적용한다.
+                            주어진 문제에서 점 B에는 하중으로 또는 지점반력으로 작용하는 모멘트가 \(0\)이므로, 점 B에서 만나는 부재 AB, BC의 점 B에서의 재단모멘트의 합 \( \sum M_B = M_{BA} + M_{BC} = 0 \)이어야 한다.
+                            따라서 위에서 계산한 재단모멘트를 대입하면 평형조건식과 여기에서 계산한 회전각 \(\theta_B\)는 다음과 같다.
+                            $$ \sum M_B = M_{BA} + M_{BC} = \frac{EI}{ 6}\theta_B + 96 + \frac{3EI}{8}\theta_B - 18 = 0 \\
+                            \left(\frac{3EI}{8} + \frac{EI}{6} \right)\theta_B = -78 \qquad \therefore \theta_B = -\frac{144}{EI} $$
+                        </li>
+                        <li>
+                            \(\theta_B\)를 부재 AB, BC의 처짐각방정식에 대입하여 재단모멘트를 계산하면 다음과 같다.
+                            $$ M_{AB} = \frac{EI}{12}\theta_B - 96 = \frac{EI}{12}\left(-\frac{144}{EI}\right) - 96 = -108 kN \cdot m \\
+                            M_{BA} = \frac{EI}{ 6}\theta_B + 96 = \frac{EI}{ 6}\left(-\frac{144}{EI}\right) + 96 = 72 kN \cdot m \\
+                            M_{BC} = \frac{3EI}{8}\theta_B - 18 = \frac{3EI}{8}\left(-\frac{144}{EI}\right) - 18 = -72 kN \cdot m $$
+                            부재 BC가 타단힌지이므로 \(M_{CB}=0\)이다.
+                        </li>
+                        <li>
+                            앞에서 계산한 재단모멘트를 포함하여 부재 AB, BC를 가상으로 절단하여 자유물체도를 아래 그림과 같이 작성한다. 처짐각법에서는 시계방향의 모멘트가 \(+\)인 것을 주의해야 한다. 전단력은 부재력으로서의 \(+\) 방향에 맞추어 표시한다.
+                            <p><img src="images\03.08.png" onload="this.width/=2;this.onload=null;"></p>
+                        </li>
+                        <li>
+                            이 자유물체도에 평형조건식을 적용하여 전단력을 계산한다. 전단력까지 계산한 것을 포함하여 작성한 자유물체도는 아래 그림과 같다.
+                            <p><img src="images\03.09.png" onload="this.width/=2;this.onload=null;"></p>
+                        </li>
+                        <li>
+                            부재 AB, BC의 자유물체도에서 아래 그림과 같이 절점 A, C에 작용하는 부재력은 구조물의 지점 A, C에 작용하는 지점반력이 된다. 따라서 \(M_A=108 kN \cdot m, \, V_A=25.5 kN, \, V_C=-3 kN\)이다.
+                            <p><img src="images\03.10.png" onload="this.width/=2;this.onload=null;"></p>
+                        </li>
+                        <li>
+                            그리고 아래 그림과 같이 <b>부재 AB, BC의 절점 B에 작용하는 부재력을 중첩하면 지점 B의 지점반력</b>이 된다. 따라서 \(V_B=37.5kN\)이다.
+                            <p><img src="images\03.11.png" onload="this.width/=2;this.onload=null;"></p>
+                        </li>
+                        <li>
+                            각 부재들의 자유물체도를 바탕으로 SFD와 BMD를 작성하면 아래 그림과 같다.
+                            <p><img src="images\03.12.png" onload="this.width/=2;this.onload=null;"></p>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    고찰
+                    <ol>
+                        <li>
+                            처짐각법은 정정구조물과 부정정구조물을 구분하지 않고 동일한 절차에 따라 진행한다.
+                        </li>
+                        <li>
+                            재단모멘트를 계산하고 나면, 이를 바탕으로 각 부재별로 자유물체도를 작성한다. 그리고 이 자유물체도는 정정구조물이므로, 평형조건식을 적용하여 전단력을 계산한다.
+                        </li>
+                        <li>
+                            각 부재의 자유물체도의 절점에 작용하는 부재력이 지점반력이 된다. 그리고 <b>여러 부재가 만나는 경우, 연결된 부재의 부재력을 중첩하면 지점반력</b>을 얻을 수 있다.
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+        <div class="separator"></div>
+
+        <!--########## RE VIEW ##########-->
+        <div id="re_view" hidden>
+            <h3><a name="re_view"></a>복습 퀴즈</h3>
+            <ol class="indent">
+                <li>다음의 1차 부정정구조물에서 부재의 수를 계산하시오<br />
+                    <img src="images\quiz.03.01.png" onload="this.width/=2;this.onload=null;"><br />
+                    <input type="text" id="input_quiz_1" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> 개
+                    <input type="submit" id="submit_quiz_1" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_1" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 1에서 부재 BC가 양단연속인지 타단힌지인지 쓰시오.<br />
+                    <input type="text" id="input_quiz_2" class="input_quiz" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" id="submit_quiz_2" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_2" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 1에서 부재 AB의 절점 B에서 타단힌지 조건에 맞는 고정단모멘트 \(H_{BA}\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_3" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
+                    <input type="submit" id="submit_quiz_3" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_3" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 1에서 부재 AB의 처짐각방정식은 \(M_{BA} = \square EI \theta_B + \cdots \, \)이다. 여기에서 \(\square\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_4" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" id="submit_quiz_4" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_4" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 1에서 절점 B의 평형조건식을 적용하면 \(\theta_B = \square/EI\)이다. \(\square\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_5" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" id="submit_quiz_5" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_5" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 5에서 계산한 \(\theta_B\)를 대입하여 \(M_{BA}\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_6" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
+                    <input type="submit" id="submit_quiz_6" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_6" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 5에서 계산한 \(\theta_B\)를 대입하여 \(M_{BC}\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_7" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
+                    <input type="submit" id="submit_quiz_7" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_7" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 6, 7에서 계산한 재단모멘트를 바탕으로 지점반력 \(V_A\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_8" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                    <input type="submit" id="submit_quiz_8" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_8" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 6, 7에서 계산한 재단모멘트를 바탕으로 지점반력 \(V_B\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_9" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                    <input type="submit" id="submit_quiz_9" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_9" class="span_quiz"></span>
+                </li>
+                <li>
+                    퀴즈 6, 7에서 계산한 재단모멘트를 바탕으로 지점반력 \(V_C\)를 계산하시오.<br />
+                    <input type="text" id="input_quiz_10" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;"> \(kN\)
+                    <input type="submit" id="submit_quiz_10" class="submit_quiz" value="Submit">
+                    <span id="span_quiz_10" class="span_quiz"></span>
+                </li>
+            </ol>
+        </div>
+        <div class="separator"></div>
+
+        <!--########## PROCEED ##########-->
+        <div id="proceed" hidden>
+            <h3><a name="proceed"></a>다음 단계로</h3>
+            <div class="indent">
+                <input type="submit" class="submit_proceed" id="submit_proceed" value="내용 보여주기" /><br /><span class="span_proceed" id="span_proceed"></span><br /><br />
+            </div>
+        </div>
+
+        </section>
+    </div>
+
+</body>
+</html>
