@@ -1,1 +1,1 @@
-# structural_mechanics
+# structural_analysis
