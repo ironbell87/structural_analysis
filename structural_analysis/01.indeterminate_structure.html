@@ -7,7 +7,7 @@
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript" src="../javascripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="../javascripts/header.js"></script>
-    <script type="text/javascript" src="../javascripts/proceed.js"></script>
+    <script type="text/javascript" src="../javascripts/login.js"></script>
     <script type="text/javascript" src="../javascripts/quiz.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
     <title>Statically indeterminate structures</title>
@@ -16,10 +16,9 @@
 
     <!-- HEADER -->
     <div class="header_1">
-        <a class="fheader_github_logo" href="https://pages.github.com"></a>
+        <a class="fheader_github_logo" href="https://pages.github.com" target="_blank"></a>
         <span class="fheader_span_login"></span>
         <a class="fheader_login"></a>
-        <a class="fheader_score"></a>
         <a class="fheader_email" href="mailto:ironbell@kyungnam.ac.kr"></a>
         <header>
             <h1 id="project_title">부정정구조물(statically indeterminate structures)</h1><br /><br />
@@ -29,24 +28,23 @@
 
 
     <!-- MAIN CONTENT -->
-    <div>
-        <section class="main">
+    <div class="content_wrapper">
 
         <!--########## PRE VIEW ##########-->
         <div id="pre_view" hidden>
             <h3><a name="pre_veiw"></a>예습과제</h3>
-            <ul class="indent">
+            <ul>
                 <li>교재 56쪽~63쪽의 "2.3 구조물의 판별"을 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
                 <li>교재 367쪽~368쪽의 "9.1 부정정구조"를 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
                 <li>교재 374쪽~376쪽의 "9.3 부정정구조물의 장단점"을 읽고 요약하여 보고서로 작성하여 제출하시오.</li>
             </ul>
+            <br /><div class="separator"></div>
         </div>
-        <div class="separator"></div>
 
         <!--########## MAIN VIEW ##########-->
         <div id="main_view" hidden>
             <h3><a name="definition"></a>부정정(statically indeterminate)</h3>
-            <ul class="indent">
+            <ul>
                 <li>
                     <b>정정(statically determinate)</b>은
                     <ul>
@@ -73,16 +71,16 @@
                 </li>
                 <li>
                     <a href="" class="li_test">확인 질문</a>
-                    <div id="test_1" hidden>
+                    <div hidden>
                         평형조건식만으로 반력을 결정할 수 없는 구조물을 쓰시오.<br />
-                        <input type="text" id="input_test_1" class="input_test" ondrop="return false;" onpaste="return false;">
-                        <input type="submit" id="submit_test_1" class="submit_test" value="Submit">
-                        <span id="span_test_1" class="span_test"></span>
+                        <input type="text" class="input_quiz" placeholder="답을 입력하세요" ondrop="return false;" onpaste="return false;">
+                        <input type="submit" class="submit_quiz" value="확인" answer="부정정구조물" hint="평형조건식만으로 반력을 결정할 수 있는 구조물은 정정구조물">
+                        <span class="span_quiz"></span>
                     </div>
                 </li>
             </ul>
             <h3><a name="externally"></a>외적정정과 외적부정정</h3>
-            <ul class="indent">
+            <ul>
                 <li>
                     외적 정정(externally statically determinate)은
                     <ul>
@@ -113,7 +111,7 @@
                 </li>
             </ul>
             <h3><a name="degree"></a>부정정 차수(degree of statically indeterminacy)</h3>
-            <ul class="indent">
+            <ul>
                 <li>
                     부정정 차수는 다음 식으로 결정한다.
                     <ul>
@@ -138,17 +136,17 @@
                 </li>
                 <li>
                     <a href="" class="li_test">확인 질문</a>
-                    <div id="test_2" hidden>
+                    <div hidden>
                         다음에서 \(n\)을 계산하시오.<br />
                         <img src="images\test.01.02.png" onload="this.width/=2;this.onload=null;"><br />
-                        <input type="text" id="input_test_2" class="input_test" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                        <input type="submit" id="submit_test_2" class="submit_test" value="Submit">
-                        <span id="span_test_2" class="span_test"></span>
+                        <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                        <input type="submit" class="submit_quiz" value="확인" answer="3">
+                        <span class="span_quiz"></span>
                     </div>
                 </li>
             </ul>
             <h3><a name="advantage"></a>부정정구조물의 장점</h3>
-            <ul class="indent">
+            <ul>
                 <li>
                     <b>평형조건을 만족시키기 위해서 필요한 최소의 조건보다 더 많이 구조물을 지지</b>한다.
                 </li>
@@ -166,16 +164,16 @@
                 </li>
                 <li>
                     <a href="" class="li_test">확인 질문</a>
-                    <div id="test_3" hidden>
+                    <div hidden>
                         구조물을 안정적으로 지지하기 위해서 필요한 최소한의 힘 외의 힘을 지칭하는 용어를 쓰시오.<br>
-                        <input type="text" id="input_test_3" class="input_test" ondrop="return false;" onpaste="return false;">
-                        <input type="submit" id="submit_test_3" class="submit_test" value="Submit">
-                        <span id="span_test_3" class="span_test"></span>
+                        <input type="text" class="input_quiz" placeholder="답을 입력하세요" ondrop="return false;" onpaste="return false;">
+                        <input type="submit" class="submit_quiz" value="확인" answer="잉여력">
+                        <span class="span_quiz"></span>
                     </div>
                 </li>
             </ul>
             <h3><a name="disadvantage"></a>부정정구조물의 단점</h3>
-            <ul class="indent">
+            <ul>
                 <li>
                     지점침하 등에 의해서 정정구조물에서는 발생하지 않을 응력도가 추가로 발생하여 구조물이 손상될 수 있다.
                 </li>
@@ -183,86 +181,77 @@
                     정정구조물보다 구조해석이나 구조설계가 복잡하다.
                 </li>
             </ul>
+            <br /><div class="separator"></div>
         </div>
-        <div class="separator"></div>
 
         <!--########## RE VIEW ##########-->
-        <div id="re_view" hidden>
-            <h3><a name="re_view"></a>복습 퀴즈</h3>
-            <ol class="indent">
+        <div id="re_view_quiz" hidden>
+            <h3><a name="re_view_quiz"></a>복습 퀴즈</h3>
+            <ol class="ol_quiz">
                 <li>
                     다음에서 부정정차수 계산을 위한 \(j\)를 계산하시오.<br /><img src="images\quiz.01.01.png" onload="this.width/=2;this.onload=null;"><br />
-                    <input type="text" id="input_quiz_1" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_1" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_1" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="6">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 1에서 부정정차수 계산을 위한 \(m\)을 계산하시오.<br />
-                    <input type="text" id="input_quiz_2" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_2" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_2" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="5">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 1에서 부정정차수 계산을 위한 \(R\)을 계산하시오.<br />
-                    <input type="text" id="input_quiz_3" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_3" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_3" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="7">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 1에서 부정정차수 계산을 위한 \(f\)를 계산하시오.<br />
-                    <input type="text" id="input_quiz_4" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_4" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_4" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="2">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 1에서 부정정차수 \(n\)을 계산하시오.<br />
-                    <input type="text" id="input_quiz_5" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_5" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_5" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="2">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     다음에서 부정정차수 계산을 위한 \(j\)를 계산하시오.<br /><img src="images\quiz.01.06.png" onload="this.width/=2;this.onload=null;"><br />
-                    <input type="text" id="input_quiz_6" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_6" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_6" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="7">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 6에서 부정정차수 계산을 위한 \(m\)을 계산하시오.<br />
-                    <input type="text" id="input_quiz_7" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_7" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_7" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="6">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 6에서 부정정차수 계산을 위한 \(R\)을 계산하시오.<br />
-                    <input type="text" id="input_quiz_8" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_8" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_8" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="7">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 6에서 부정정차수 계산을 위한 \(f\)를 계산하시오.<br />
-                    <input type="text" id="input_quiz_9" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_9" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_9" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="4">
+                    <span class="span_quiz"></span>
                 </li>
                 <li>
                     퀴즈 6에서 부정정차수 \(n\)을 계산하시오.<br />
-                    <input type="text" id="input_quiz_10" class="input_quiz" onkeypress="return IsNumeric(event,this.value);" ondrop="return false;" onpaste="return false;">
-                    <input type="submit" id="submit_quiz_10" class="submit_quiz" value="Submit">
-                    <span id="span_quiz_10" class="span_quiz"></span>
+                    <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
+                    <input type="submit" class="submit_quiz" value="확인" answer="3">
+                    <span class="span_quiz"></span>
                 </li>
-            </ol>
+            </ol><br />
+            <input type="submit" class="submit_eval" value="복습 퀴즈 평가" /><br />
+            <span class="span_eval"></span>
         </div>
-        <div class="separator"></div>
-
-        <!--########## PROCEED ##########-->
-        <div id="proceed" hidden>
-            <h3><a name="proceed"></a>다음 단계로</h3>
-            <div class="indent">
-                <input type="submit" class="submit_proceed" id="submit_proceed" value="내용 보여주기" /><br /><span class="span_proceed" id="span_proceed"></span><br /><br />
-            </div>
-        </div>
-
-        </section>
     </div>
 
 </body>

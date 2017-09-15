@@ -19,7 +19,7 @@ body {
   color: grey;
   font-size: 16px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
-  line-height: 1.8/*1.5*/;
+  line-height: 2.5/*1.5*/;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -87,25 +87,24 @@ a {
 }
 a:hover, a:focus {text-decoration: underline;}
 
-.some_small_font {
-    /*border: 3px solid #73AD21;*/
-    font-size: 12px;
+em { /* not used in this project */
+    font-style: normal;
+    color: MediumVioletRed;
+}
+
+img {
+    transition: all 0.5s ease-in-out;
+}
+img:active {
+    transform: scale(1.8);
+}
+
+img.top_margin {
+    margin-top: 20px;
 }
 
 .indent {
-     /*padding-left: 60px;*/
      padding-left: 30px;
-}
-
-.main {
-    width: 100%;
-}
-
-#pre_view, #main_view, #re_view, #proceed {
-    position: relative;
-    max-width: 800px;
-    padding: 0px 10px 40px; /* top, left, btm, right */
-    margin: 0 auto;
 }
 
 .separator {
@@ -173,18 +172,19 @@ a:hover, a:focus {text-decoration: underline;}
     position: absolute;
     color: #000;
     text-align: right;
+    line-height: 180%;
     top: 15px;
-    right: 150px;
+    right: 105px;
     /*width: 200px; /* width of anchor */
     height: 30px; /* height of anchor */
     opacity: 0.5;
     cursor: default;
 }
-.fheader_login, .fheader_score, .fheader_email {
+.fheader_login, .fheader_email {
     /*border: 1px solid #73AD21;*/
     position: absolute;
     top: 15px;
-    right: 105px;
+    right: 60px;
     /*z-index: 10; /* large z-index = forefront */
     background: url("../images/login_icon.png");
     background-size: 30px 30px; /* reduce the size of image into 40px*/
@@ -194,14 +194,7 @@ a:hover, a:focus {text-decoration: underline;}
     opacity: 0.5;
     cursor: pointer;
 }
-/*.fheader_login {
-    cursor: pointer;
-}*/
-.fheader_score {
-    right: 60px;
-    background: url("../images/score_icon.png");
-    background-size: 30px 30px; /* reduce the size of image into 40px*/
-}
+
 .fheader_email {
     right: 15px;
     background: url("../images/email_icon.png");
@@ -309,10 +302,32 @@ a:hover, a:focus {text-decoration: underline;}
 
 
 /*******************************************************************************
-* login and proceed
+* content
 *******************************************************************************/
 
-#login_outer, #score_outer {
+.content_wrapper {
+    /*border: 10px solid #00f;*/
+    background-color: #fff;
+    position: relative;
+    width: 600px;
+    top: 0px;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.description { /* not used in this project */
+    /*border: 1px solid #0f0;*/
+    padding-top: 20px;
+    text-align: center;
+}
+
+
+
+/*******************************************************************************
+* login
+*******************************************************************************/
+
+#login_outer {
     position: fixed;
     z-index: 998; /* sit on top */
     left: 0;
@@ -324,7 +339,7 @@ a:hover, a:focus {text-decoration: underline;}
     background-color: rgba(255,255,255,0.3); /* opacity */
 }
 
-#login_inner, #score_inner {
+#login_inner {
     /*border: 3px solid #73AD21;*/
     text-align: center;
     position: fixed;
@@ -341,68 +356,125 @@ a:hover, a:focus {text-decoration: underline;}
     list-style: none; /* remove bullet; applied only to score_inner */
 }
 
-#score_inner li {
-    /*border: 3px solid #73AD21;*/
-    display: inline; /* list in horizontal */
-}
-
-.input_login, .input_test, .input_quiz {
+.input_login {
     margin: 2px;
     background-color: #f0f0f0;
-    font-size: 12px;
     width: 200px;
     height: 30px;
     padding-left: 6px;
 }
-.submit_login, .submit_test, .submit_quiz, .submit_proceed, .submit_score {
+
+.submit_login {
     /*border: 3px solid #73AD21;*/
     margin: 2px;
     background-color: grey;
-    font-size: 12px;
     width: 100px;
     height: 30px;
     color: white;
 }
-.submit_quiz {
-    margin-left: 80px;
-    margin-bottom: 20px;
-}
-.submit_test {
-    margin-left: 80px;
-}
-.submit_login:hover, .submit_test:hover, .submit_quiz:hover, .submit_proceed:hover, .submit_score:hover {
+.submit_login:hover {
     background-color: #ff6f6f;
     cursor: pointer;
 }
 
-.span_login, .span_test, .span_quiz, .span_proceed {
+.span_login {
     font-size: 12px;
 }
 
-.span_quiz, .span_test {
-    margin-left: 10px;
+
+
+/*******************************************************************************
+* test and quiz
+*******************************************************************************/
+.ol_quiz input {
+    margin-bottom: 30px;
 }
 
-.span_hint {
-    text-decoration: none;
-    color: #ff6f6f;
-    text-shadow: none;
-
-    transition: color 0.5s ease;
-    transition: text-shadow 0.5s ease;
-    -webkit-transition: color 0.5s ease;
-    -webkit-transition: text-shadow 0.5s ease;
-    -moz-transition: color 0.5s ease;
-    -moz-transition: text-shadow 0.5s ease;
-    -o-transition: color 0.5s ease;
-    -o-transition: text-shadow 0.5s ease;
-    -ms-transition: color 0.5s ease;
-    -ms-transition: text-shadow 0.5s ease;
+.input_quiz {
+    background-color: #f0f0f0;
+    width: 160px;
+    height: 30px;
+    padding-left: 6px;
 }
 
-.span_hint:hover {
+.submit_quiz, .submit_eval {
+    /*border: 3px solid #73AD21;*/
+    background-color: grey;
+    width: 90px;
+    height: 30px;
+    color: white;
+    text-align: center;
+    margin-left: 30px;
+}
+.submit_eval {
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 0px;
+}
+.submit_quiz:hover, .submit_eval:hover {
+    background-color: #ff6f6f;
     cursor: pointer;
 }
+
+.span_quiz {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.span_eval {
+    font-size: 14px;
+}
+
+
+
+/*******************************************************************************
+* tooltip
+*******************************************************************************/
+
+.span_quiz {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+}
+
+.span_quiz .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #ff6f6f;
+    color: #fff;
+    /*text-align: center;*/
+    line-height: 130%;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    top: 100%; /* top from 100% of parent */
+    left: 0%; /* left from 0% of parent */
+    margin-left: 0px;
+    opacity: 0;
+    transition: opacity 1s;
+    font-size: 14px;
+}
+
+.span_quiz .tooltiptext::after { /* topward arrow at bottom */
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 20px; /* arrow left from 20px of parent*/
+    margin-left: 0px;
+    border-width: 5px; /* size of arrow */
+    border-style: solid;
+    border-color: transparent transparent #ff6f6f transparent;
+}
+
+.span_quiz:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
 
 /*******************************************************************************
 * tooltip

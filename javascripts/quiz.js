@@ -1,132 +1,144 @@
-﻿var g_tolerance = 1.0e-2;
-var test_ans_arr = [
-    ["부정정구조물", 3, "잉여력"], // indeterminate
-    ["적합조건식", 1.6429], // flexibility
-    ["양단연속", 0, 5, -5], // slope
-    [0.75, 0.6667, -9, -9, 25, -25] // moment
-];  // as many as you like - no comma after final entry
-var quiz_ans_arr = [
-    [6, 5, 7, 2, 2, 7, 6, 7, 4, 3], // indeterminate
-    [5, -2, 0.8889, 2.25, -0.03, 0.001, 30, -0.32, 0.09, 3.5556], // flexibility
-    [2, "타단힌지", 2, 1, -1, 1, -1, 3.5, 4.8333, -0.3333], // slope
-    [1, 1, 1, 0.5, 2, -2, -1, -1, 1, -1] // moment
-];
+﻿var g_tolerance = 1.0e-2, g_toggle_duration = 400;
 
 $(document).ready(function ()
 {
+    // show / hide dependent on login
+    if (sessionStorage.login == undefined) {
+        alert('학습을 시작하려면 먼저 로그인하세요.'); return;
+    }
+    toggle_body(true);
+
     $(".li_test").click(function () {
         // get the test element
         var test = $(this).parent().children().eq(1);
-        test.slideToggle(400); // hide -> show or show -> hide
+        test.slideToggle(g_toggle_duration); // hide -> show or show -> hide
         return false;
     });
 
-    $(".submit_test").click(function ()
-    {
-        // get the index of column
-        var j_arr = $(this).attr('id').split("_");
-        var j_idx = j_arr[j_arr.length - 1];
-
-        // get the row of the array => [9800, 12, 0]; // get the index of row
-        cur_arr = test_ans_arr[get_row_idx()];
-
-        // comparison
-        treat_answer(cur_arr, j_idx, "test");
+    // for ENTER, click submit button
+    $('body').on('keyup', '.input_quiz', function (event) {
+        if (event.keyCode == 13)
+            $(this).nextAll(".submit_quiz:first").click();
     });
 
-    $(".submit_quiz").click(function ()
-    {
-        // get the index of column
-        var j_arr = $(this).attr('id').split("_");
-        var j_idx = j_arr[j_arr.length - 1];
+    // show / hide each quiz
+    $(".submit_quiz").click(function () {
+        // get id of the corresponding elements
+        var m_input = $(this).prevAll('input:first');
+        var m_submit = $(this);
+        var m_span = $(this).next();
 
-        // get the row of the array => [9800, 12, 0]; // get the index of row
-        cur_arr = quiz_ans_arr[get_row_idx()];
+        // get answer and input value
+        var m_answer = m_submit.attr('answer');
+        var m_input_val = m_input.val(); // if 'type = numberic, non-number can be input but m_input_val would be undefined
+
+        // in case of no input
+        if (m_input_val == "") {
+            m_input.focus();
+            m_span.text("답을 입력하세요!");
+            if (sessionStorage.login == "administrator") { // for instructor
+                m_input.val(m_answer); // set answer
+                add_hint(m_span, m_submit); // add tooltip hint
+            }
+            return false;
+        }
 
         // comparison
-        treat_answer(cur_arr, j_idx, "quiz");
+        var m_tolerance = m_submit.attr('tolerance');
+        var m_comparison = compare_value(m_input, m_answer, m_input_val, m_tolerance);
+
+        //if (compare_value(m_input, m_answer, m_input_val)) { //  in case of exact answer
+        if (m_comparison) { //  in case of exact answer
+            m_input.val(m_answer);
+            m_input.prop("disabled", true); // disable input button
+            m_input.css("color", "#ff6f6f"); // change the color of input button
+            m_submit.prop("disabled", true); // disable submit button
+            m_submit.css("background-color", "#ff6f6f"); // change the color of submit button
+            m_submit.css("cursor", "default"); // change the color of submit button
+            m_span.text("정답입니다!"); // change the text of submit span
+            m_span.css("color", "#ff6f6f"); // change the color of submit span
+            m_submit.parent().prev('a.li_test').text("확인 질문 - 풀이 완료"); // in case of no a.li_test, no problem
+
+            // remove tooltip hint
+            m_span.children(":first").remove();
+            return true;
+        }
+        else { // in case of wrong answer
+            m_input.val("");
+            m_input.focus();
+            m_span.text("오답입니다! 다시 풀어보세요!"); // default message in case of no hint
+            if (sessionStorage.login == "administrator") m_input.val(m_answer); // for instructor
+
+            // add tooltip hint
+            add_hint(m_span, m_submit);
+            return false;
+        }
     });
 
-    $(".span_hint").click(function () {
-        var hint_id = "#" + $(this).attr("hint_id");
-        $(hint_id).toggle(400);
+    // evaluate the results of all the quizzes
+    $('.submit_eval').click(function () {
+        if ($(this).val() == "복습 퀴즈 평가") {
+            // get score
+            var total_num = $(".ol_quiz span.span_quiz").length;
+            var exact_num = get_num_exac_quiz();
+            var m_score = exact_num / total_num * 100;
+
+            // get string
+            var m_prefix = "평가결과는 " + m_score.toFixed(1) + "점으로 ";
+            if (m_score >= 60) {
+                m_response = "기준(60/100) 이상입니다. 100점에 도전해 보세요."
+                if (m_score == 100) {
+                    m_response = "매우 우수합니다. 다음 학습에 도전해 보세요."
+                    $(".submit_eval").val("메인으로 가기");
+                    $(".submit_eval").css("background-color", "#ff6f6f"); // change the bg-color
+                }
+                $(".span_eval").css("color", "#ff6f6f"); // change the color
+            }
+            else {
+                m_response = "기준(60/100) 이하입니다. 충실하게 다시 학습해 보세요.";
+            }
+            $(".span_eval").html(m_prefix + m_response);
+        }
+        else {
+            if ($(this).val() == "메인으로 가기") {
+                location.href = "../index.html"; return false;
+            }
+        }
     });
 });
 
-function get_row_idx()
-{
-    var title = $(document).find("title").text();
-    switch (title) {
-        case "Statically indeterminate structures":
-            var cur_idx = 0; break;
-        case "Flexibility method":
-            var cur_idx = 1; break;
-        case "Slope deflection method":
-            var cur_idx = 2; break;
-        case "Moment distribution method":
-            var cur_idx = 3; break;
-        default:
-            var cur_idx = 0; break;
+function add_hint(p_span_mom, p_submit) {
+    var m_span_hint = p_span_mom.children('.tooltiptext');
+    if (m_span_hint.length > 0) return; // hint is already added
+
+    var m_hint = p_submit.attr('hint');
+    if (m_hint != undefined) {
+        p_span_mom.append('<span class="tooltiptext">' + m_hint + '</span>');
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
-    return cur_idx;
 }
-function treat_answer(cur_arr, j_idx, p_type) // p_type = "test" / "quiz"
-{
-    // get id of the corresponding elements
-    p_type = p_type + "_";
-    var inp_quiz = "#input_" + p_type + j_idx;
-    var sub_quiz = "#submit_" + p_type + j_idx;
-    var span_quiz = "#span_" + p_type + j_idx;
 
-    // get values
-    var m_ans = cur_arr[j_idx - 1]; // exanser answer
-    var m_inp = $(inp_quiz).val();  // input answer
-
-    // in case of no input
-    if (m_inp == "")
-    {
-        $(inp_quiz).focus();
-        $(span_quiz).text("답을 입력하세요!");
-        return false;
+function compare_value(p_input, p_ex_ans, p_in_ans, p_tolerance) {
+    var m_tolerance = g_tolerance;
+    if (p_input.prop('type') == "number") { // in case of number
+        if (p_tolerance != undefined) m_tolerance = parseFloat(p_tolerance); // set tolerance
+        m_ex_ans = parseFloat(p_ex_ans);
+        m_in_ans = Math.round(parseFloat(p_in_ans) / m_tolerance) * m_tolerance; // set decimal place
+        if (Math.abs(m_ex_ans - m_in_ans) < m_tolerance) return true;
+        else return false;
     }
+    else { // in case of text
+        if (p_ex_ans == p_in_ans) return true;
+        else return false;
+    }
+}
 
-    // comparison
-    //  in case of exact answer
-    if (comparison_value(inp_quiz, m_ans, m_inp)) {
-        $(inp_quiz).val(m_ans);
-        $(inp_quiz).prop("disabled", true); // disable input button
-        $(inp_quiz).css("color", "#ff6f6f"); // change the color of input button
-        $(sub_quiz).prop("disabled", true); // disable submit button
-        $(sub_quiz).css("background-color", "#ff6f6f"); // change the color of submit button
-        $(sub_quiz).css("cursor", "default"); // change the color of submit button
-        $(span_quiz).text("정답입니다!"); // change the text of submit span
-        $(span_quiz).css("color", "#ff6f6f"); // change the color of submit span
-        if (p_type == "test_")
-        {
-            $("#test_" + j_idx).parent().children().eq(0).text("확인 질문 - 풀이 완료");
+function get_num_exac_quiz() {
+    var m_exact_num = 0;
+    $(".ol_quiz span.span_quiz").each(function () {
+        if ($(this).text() == "정답입니다!") {
+            m_exact_num = m_exact_num + 1;
         }
-        return true;
-    }
-    else // in case of wrong answer
-    {
-        $(inp_quiz).val("");
-        $(inp_quiz).focus();
-        $(span_quiz).text("오답입니다! 다시 풀어보세요!");
-        return false;
-    }
-}
-
-function comparison_value (inp_id, ex_ans, in_ans)
-{
-    var evnt_attr = $(inp_id).attr('onkeypress');
-    if (typeof evnt_attr != "undefined") { // in case of number
-    //if ($(inp_id).attr('onkeypress').includes("IsNumeric")) { // in case of number
-        if (Math.abs(ex_ans - in_ans) < g_tolerance) { return true; }
-        else { return false; }
-    }
-    else // in case of text
-    {
-        if (ex_ans == in_ans) { return true; }
-        else { return false; }
-    }
+    });
+    return m_exact_num;
 }
