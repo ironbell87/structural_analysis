@@ -11,6 +11,9 @@ $(document).ready(function () {
         toggle_body(false);
     }
 
+    // favicon for all pages
+    $('head').append('<link rel="icon" href="https://ironbell87.github.io/structural_mechanics_II/images/ironbell_icon.png">');
+
     // prohibit context menu, drag, and select for normal user
     // <body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
     $('body').on('contextmenu', function () {

@@ -8,7 +8,7 @@
     border: 0px;
     font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
     font-size: 16px;
-    color: grey; /* font color; 00=no color; ff=full color */
+    /*color: grey;*/
     /*line-height: 1.8;*/
     vertical-align: baseline;
     -webkit-font-smoothing: antialiased;
@@ -108,10 +108,11 @@ img.top_margin {
 }
 
 .separator {
-    position:absolute;
+    position: absolute;
     left: 0px;
     right: 0px;
     height: 2px;
+    margin-top: 20px;
     background-color: #e7e7e7;
 }
 
