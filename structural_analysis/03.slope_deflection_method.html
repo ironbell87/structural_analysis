@@ -236,13 +236,13 @@
                     각 부재별로 고정단모멘트를 계산한다.
                 </li>
                 <li>
-                    부재의 지지조건을 바탕으로 각 부재들 끝단의 처짐각의 크기, 지점의 처짐의 크기, 재단모멘트의 값 일부를 경계조건으로 파악한다.
+                    부재의 지지조건을 바탕으로 각 부재들 끝단의 처짐각, 지점의 처짐, 재단모멘트의 일부를 <b>경계조건</b>으로 파악한다.
                 </li>
                 <li>
                     각 부재별로 처짐각방정식을 작성한다.
                 </li>
                 <li>
-                    부재들이 연결되는 절점과 층에서의 평형조건식을 적용하고, 이로부터 절점에서의 처짐각을 계산한다.
+                    부재들이 연결되는 <b>절점과 층에서 평형조건식을 적용</b>하고, 이로부터 절점에서의 처짐각을 계산한다.
                 </li>
                 <li>
                     각 부재별로 앞에서 계산한 처짐각을 처짐각방정식에 대입하여 재단모멘트를 계산한다.
@@ -269,7 +269,7 @@
                     풀이
                     <ol>
                         <li>
-                            이 구조물은 부재 AB, 부재 BC로 구성되어 있다. <b>부재 AB는 점 A는 고정단, 점 B는 고정절점이므로 양단연속</b>이다. <b>부재 BC는 점 B는 고정절점, 점 C는 회전단이므로 타단힌지</b>이다.
+                            이 구조물은 부재 AB, 부재 BC로 구성되어 있다. <b>부재 AB는 점 A는 고정단, 점 B는 고정절점이므로 양단연속</b>이다. <b>부재 BC는 점 B는 고정절점, 점 C는 이동단이므로 타단힌지</b>이다.
                         </li>
                         <li>
                             부재 AB는 양단연속이고 등분포하중이 작용하므로 \(C_{AB}=-wL^2/12=-2 \times 24^2 / 12 = -96 kN \cdot m = - C_{BA} \)이다.<br />
@@ -292,7 +292,7 @@
                             주어진 문제에서 <b>점 B에는 하중으로 또는 지점반력으로 작용하는 모멘트가 \(0\)이므로, 점 B에서 만나는 부재 AB, BC의 점 B에서의 재단모멘트의 합 \( \sum M_B = M_{BA} + M_{BC} = 0 \)</b>이다.
                             따라서 다음과 같이 평형조건식에 위의 처짐각방정식을 대입하여 풀면 처짐각 \(\theta_B\)를 구할 수 있다.
                             $$ \sum M_B = M_{BA} + M_{BC} = \frac{EI}{ 6}\theta_B + 96 + \frac{3EI}{8}\theta_B - 18 = 0 $$
-                            $$ \left(\frac{3EI}{8} + \frac{EI}{6} \right)\theta_B = -78 \qquad \therefore \theta_B = -\frac{144}{EI} $$
+                            $$ \left(\frac{EI}{6} + \frac{3EI}{8} \right)\theta_B = -78 \qquad \therefore \theta_B = -\frac{144}{EI} $$
                         </li>
                         <li>
                             \(\theta_B\)를 부재 AB, BC의 처짐각방정식에 대입하여 재단모멘트를 계산하면 다음과 같다.
@@ -381,9 +381,9 @@
                         </li>
                         <li>
                             \(\theta_B\)를 부재 AB, BC의 처짐각방정식에 대입하여 재단모멘트를 계산하면 다음과 같다.
-                            $$ M_{AB} = \frac{EI}{2}\theta_B = \frac{EI}{2}\frac{250}{24EI} = \frac{125}{24} kN \cdot m $$
-                            $$ M_{BA} = EI\theta_B = EI\frac{250}{24EI} = \frac{250}{24} kN \cdot m $$
-                            $$ M_{BC} = \frac{3EI}{5}\theta_B - \frac{50}{3} = \frac{3EI}{5}\frac{250}{24EI} - \frac{50}{3} = \frac{50}{8} - \frac{50}{3} = -\frac{250}{24} kN \cdot m $$
+                            $$ M_{AB} = \frac{EI}{2}\theta_B = \frac{EI}{2}\times\frac{250}{24EI} = \frac{125}{24} kN \cdot m $$
+                            $$ M_{BA} = EI\theta_B = EI\times\frac{250}{24EI} = \frac{250}{24} kN \cdot m $$
+                            $$ M_{BC} = \frac{3EI}{5}\theta_B - \frac{50}{3} = \frac{3EI}{5}\times\frac{250}{24EI} - \frac{50}{3} = \frac{50}{8} - \frac{50}{3} = -\frac{250}{24} kN \cdot m $$
                             나머지 재단모멘트는 <b>경계조건</b>을 적용하여 다음과 같이 구한다.
                             $$ M_{CB} = -M_{BC} = \cfrac{250}{24} kN \cdot m $$
                             $$ M_{CD} = -M_{BA} = -\cfrac{250}{24} kN \cdot m $$
@@ -436,7 +436,7 @@
                         </li>
                         <li>
                             부재 AB, CD에는 하중이 작용하지 않으므로 고정단모멘트 \(C_{AB} = C_{BA} = C_{CD} = C_{DC} = 0 kN \cdot m \)이다.<br />
-                            부재 BC는 양단연속이고 집중하중이 임의의 위치에 작용하므로 다음과 같다.
+                            부재 BC는 양단연속이고 집중하중이 임의의 위치에 작용하므로 고정단모멘트는 다음과 같다.
                             $$ C_{BC} = -\cfrac{Pab^2}{L^2} = -\cfrac{12 \times 2 \times 4^2}{6^2} = -\cfrac{32}{3} kN \cdot m $$
                             $$ C_{CB} = \cfrac{Pa^2b}{L^2} = \cfrac{12 \times 2^2 \times 4}{6^2} = \cfrac{16}{3} kN \cdot m $$
                         </li>
@@ -567,11 +567,11 @@
                         </li>
                         <li>
                             \(L_{BC}=3, \, \psi_{BC}=0, \, H_{BC} = 0\)을 적용한 타단힌지인 부재 BC의 처짐각방정식은 다음과 같다.
-                            $$ M_{BC} = 3Ek(\theta_B - \psi_{BC}) + H_{BC} = 3E\frac{I}{3}(2\theta_B - 0) + 0 = EI\theta_B $$
+                            $$ M_{BC} = 3Ek(\theta_B - \psi_{BC}) + H_{BC} = 3E\frac{I}{3}(\theta_B - 0) + 0 = EI\theta_B $$
                         </li>
                         <li>
                             \(L_{CD}=4, \, \theta_{D}=0, \psi_{CD} = \psi, \, H_{CD} = 0\)을 적용한 타단힌지인 부재 CD의 처짐각방정식은 다음과 같다.
-                            $$ M_{DC} = 3Ek(2\theta_D - \psi_{CD}) + H_{DC} = 3E\frac{I}{4}(0 - \psi) + 0 = -\frac{3EI}{4}\psi $$
+                            $$ M_{DC} = 3Ek(\theta_D - \psi_{CD}) + H_{DC} = 3E\frac{I}{4}(0 - \psi) + 0 = -\frac{3EI}{4}\psi $$
                         </li>
                         <li>
                             부재가 연결되는 <b>절점 B에서 평형조건식</b>을 적용한다.
@@ -662,21 +662,21 @@
                         </li>
                         <li>
                             \(L_{BC}=2, \, \psi_{BC}=0.005, \, H_{BC} = 0\)을 적용한 타단힌지인 부재 BC의 처짐각방정식은 다음과 같다.
-                            $$ M_{BC} = 3Ek(\theta_B - \psi_{BC}) + H_{BC} = 3E\frac{I}{2}(2\theta_B - 0.005) + 0 = \frac{3EI}{2}(\theta_B - 0.005) $$
+                            $$ M_{BC} = 3Ek(\theta_B - \psi_{BC}) + H_{BC} = 3E\frac{I}{2}(\theta_B - 0.005) + 0 = \frac{3EI}{2}(\theta_B - 0.005) $$
                         </li>
                         <li>
                             부재가 연결되는 <b>절점 B에서 평형조건식</b>을 적용한다.
                             주어진 문제에서 <b>절점 B에는 하중으로 또는 지점반력으로 작용하는 모멘트가 \(0\)이므로, 절점 B에서 만나는 부재의 점 B에서의 재단모멘트의 합 \( \sum M_B = M_{BA} + M_{BC} = 0\)</b>이다.
                             따라서 다음과 같이 평형조건식에 위의 처짐각방정식을 대입하여 풀면 처짐각 \(\theta_B\)를 구할 수 있다.
                             $$ \sum M_B = M_{BA} + M_{BC} = EI\theta_B + \frac{3EI}{2}(\theta_B - 0.005) = 0 $$
-                            $$ \frac{5EI}{2}\theta_B - \frac{3EI}{2}0.005 = 0 \qquad \therefore \theta_B = \frac{3}{5} \times 0.005 = 0.003 $$
+                            $$ \frac{5EI}{2}\theta_B - \frac{3EI}{2}\times0.005 = 0 \qquad \therefore \theta_B = \frac{3}{5} \times 0.005 = 0.003 rad$$
                         </li>
                         <li>
                             \(\theta_B\)를 부재의 처짐각방정식에 대입하고 실제 \(E, \, I\)를 적용하여 재단모멘트를 계산하면 다음과 같다.
                             $$ E = 2.1 \times 10^4 N/mm^2 = 2.1 \times 10^4 \times 10^{-3} kN/(10^{-3}m)^2 = 2.1 \times 10^7 kN/m^2 $$
                             $$ I = 2.4 \times 10^7 mm^4 = 2.4 \times 10^7 \times (10^{-3} m)^4 = 2.4 \times 10^{-5} m^4 $$
                             $$ EI = 2.1 \times 10^7 kN/m^2 \times 2.4 \times 10^{-5} m^4 = 5.04 \times 10^2 = 504 kN \cdot m^2 $$
-                            $$ M_{AB} = \frac{EI}{2}\theta_B = \frac{504}{2} \ times 0.003 = 0.756 kN \cdot m $$
+                            $$ M_{AB} = \frac{EI}{2}\theta_B = \frac{504}{2} \times 0.003 = 0.756 kN \cdot m $$
                             $$ M_{BA} = EI\theta_B = 504 \times 0.003 = 1.512 kN \cdot m $$
                             $$ M_{BC} = \frac{3EI}{2}(\theta_B - 0.005) = \frac{3 \times 504}{2}(0.003 - 0.005) = -1.512 kN \cdot m $$
                         </li>

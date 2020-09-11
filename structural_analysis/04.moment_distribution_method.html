@@ -164,7 +164,7 @@
                     여기에서 \(M_{BA} = (1/2)M_{AB}\)이다. 즉, 점 A에 \(\theta_A\)를 발생시키기 위해서는 점 A에 재단모멘트 \( M_{AB} = (4EI/L)\theta_A \)를 가해야 하고, 이 재단모멘트의 절반이 점 B의 재단모멘트 \( M_{BA} = (1/2)M_{AB} = (2EI/L)\theta_A \)로 전달된다.
                 </li>
                 <li>
-                    이와 같이 <b>양단연속</b>인 부재에서 <b>한 끝단에 재단모멘트가 가해지면, 그 재단모멘트 절반이 다른 끝단의 재단모멘트로 전달</b>된다. 이렇게 전달되는 모멘트를 전달모멘트(carry over moment), \(CM\)이라 하고 그 비율인 \(1/2\)을 전달계수(carry over factor)라 한다.
+                    이와 같이 <b>양단연속</b>인 부재에서 <b>한 끝단에 재단모멘트가 가해지면, 그 재단모멘트 절반이 다른 끝단의 재단모멘트로 전달</b>된다. 이렇게 전달되는 휨모멘트를 전달모멘트(carry over moment), \(CM\)이라 하고 그 비율인 \(1/2\)을 전달계수(carry over factor)라 한다.
                 </li>
                 <li>
                     <a href="" class="li_test">확인 질문</a>
@@ -183,11 +183,11 @@
                     아래 그림에서 부재 AB의 양단은 하중에 의해서 그림 a)와 같이 회전각 \(\theta_A, \, \theta_B\)가 발생한다.
                 </li>
                 <li>
-                    하지만 만약 그림 b)와 같이 부재 양단의 <b>회전각이 모두 \(0\)이 되는 크기의 모멘트 \(FEM_{AB}, \, FEM_{BA}\)</b>를 가한다면, 그림 c)처럼 양단이 고정단인 것과 동일하게 된다.<br /><br />
+                    하지만 만약 그림 b)와 같이 부재 양단의 <b>회전각이 모두 \(0\)이 되는 크기의 휨모멘트 \(FEM_{AB}, \, FEM_{BA}\)</b>를 가한다면, 그림 c)처럼 양단이 고정단인 것과 동일하게 된다.<br /><br />
                     <p><img src="images\04.04.png" onload="this.width/=2;this.onload=null;"></p>
                 </li>
                 <li>
-                    이와 같이 부재의 양단을 <b>가상의 고정단으로 고정(locking)하기 위해서 양단에 가하는 모멘트 \(FEM_{AB}, \, FEM_{BA}\) 등</b>을 고정단모멘트(fixed end moment), \(FEM\)이라고 한다.
+                    이와 같이 부재의 양단을 <b>가상의 고정단으로 고정(locking)하기 위해서 양단에 가하는 휨모멘트 \(FEM_{AB}, \, FEM_{BA}\) 등</b>을 고정단모멘트(fixed end moment), \(FEM\)이라고 한다.
                     이는 <a href="03.slope_deflection_method.html#fixed_end_moment">처짐각법에서 기술한 고정단모멘트</a>와 동일하며, <b>양단연속과 타단힌지인 경우에 따라 구분</b>해야 한다.
                 </li>
                 <li>
@@ -196,7 +196,7 @@
                 <li>
                     <a href="" class="li_test">확인 질문</a>
                     <div hidden>
-                        다음에서 절점 B의 \(FEM\)을 계산하시오.<br />
+                        다음과 같이 왼쪽과 오른쪽 부재에 FEM이 작용하는 경우, 절점 B의 \(FEM\)을 계산하시오.<br />
                         <img src="images\test.04.05.png" onload="this.width/=2;this.onload=null;"><br />
                         <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
                         <input type="submit" class="submit_quiz" value="확인" answer="25">
@@ -222,7 +222,7 @@
                 <li>
                     <a href="" class="li_test">확인 질문</a>
                     <div hidden>
-                        다음에서 절점 B의 \(RM\)을 계산하시오.<br />
+                        다음과 같이 FEM이 작용하는 경우, 절점 B의 \(RM\)을 계산하시오.<br />
                         <img src="images\test.04.05.png" onload="this.width/=2;this.onload=null;"><br />
                         <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
                         <input type="submit" class="submit_quiz" value="확인" answer="-25">
@@ -507,7 +507,7 @@
                         </li>
                         <li>
                             가상으로 고정할 다른 점이 없으므로, 부재의 각 끝단마다 가한 \(FEM\), \(DM\), \(CM\)을 모두 합하여 정답인 재단모멘트를 계산하면 다음과 같다.<br />
-                            \( M_{AB}=+480/17 = 28.235 kN \cdot m, \, M_{BA}=+960/17 = +56.471 kN \cdot m \)<br />
+                            \( M_{AB}=+480/17 = +28.235 kN \cdot m, \, M_{BA}=+960/17 = +56.471 kN \cdot m \)<br />
                             \( M_{BC}=-960/17 = -56.471 kN \cdot m, \, M_{CB}=0 kN \cdot m \)
                         </li>
                     </ol>
