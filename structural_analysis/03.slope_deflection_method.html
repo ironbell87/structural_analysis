@@ -653,7 +653,7 @@
                         </li>
                         <li>
                             점 A는 고정단이고 부재 AB의 길이가 10mm 더 길다는 점을 고려하면, <b>구조물의 변형 형상은 붉은 점선</b>과 같다. 따라서 <b>경계조건</b>은 다음과 같다.
-                            $$ \theta_A = 0, \Delta_{AB} = 0, \ \psi_{AB} = 0, \, \Delta_{BC} = 10mm, \psi = \Delta_{BC} / L_{BC} = 10 / 2000 = 0.005, \, M_{CB} = 0 $$
+                            $$ \theta_A = 0, \Delta_{AB} = 0, \ \psi_{AB} = 0, \, \Delta_{BC} = 10mm, \psi_{BC} = \Delta_{BC} / L_{BC} = 10 / 2000 = 0.005, \, M_{CB} = 0 $$
                         </li>
                         <li>
                             \(L_{AB}=4, \, \theta_{A}=0, \psi_{AB} = 0, \, C_{AB} = C_{BA} = 0\)을 적용한 양단연속인 부재 AB의 처짐각방정식은 다음과 같다.
@@ -687,7 +687,7 @@
                         </li>
                         <li>
                             이 자유물체도에 평형조건식을 적용하여 각 부재의 전단력을 먼저 계산한다.
-                            다음에는 절점 B에서 <b>\(H_{B1} + H_{B2} = 0\)</b>\(, \, V_{B1} + V_{B2} = 0\), 절점 C에서 \(H_{C1} + H_{C2} = 0, \, V_{C1} + V_{C2} = 0\)을 이용하여 각 부재의 축력을 계산한다.
+                            다음에는 절점 B에서 \(H_{B1} + H_{B2} = 0, \, V_{B1} + V_{B2} = 0\), 절점 C에서 \(H_{C1} + H_{C2} = 0, \, V_{C1} + V_{C2} = 0\)을 이용하여 각 부재의 축력을 계산한다.
                             계산한 전단력과 축력을 포함하여 작성한 자유물체도는 아래 그림과 같다.
                             <p><img src="images\03.34.png" onload="this.width/=2;"></p>
                         </li>
@@ -710,7 +710,7 @@
             <h3><a name="re_view_quiz"></a>복습 퀴즈</h3>
             <ol class="ol_quiz">
                 <li>
-                    다음의 1차 부정정구조물에서 부재의 수를 계산하시오<br />
+                    다음의 1차 부정정구조물에서 부재의 수를 계산하시오. 단, 모든 부재에서 \(E\)는 일정하다.<br />
                     <img src="images\quiz.03.01.png" onload="this.width/=2;this.onload=null;"><br />
                     <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;"> 개
                     <input type="submit" class="submit_quiz" value="확인" answer="2">
