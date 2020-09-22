@@ -169,10 +169,10 @@
                 <li>
                     <a href="" class="li_test">확인 질문</a>
                     <div hidden>
-                        다음에서 \(M=30kN \cdot m\)일 때, \(CM_{AB}\)를 계산하시오.<br />
+                        다음에서 \(M = -30kN \cdot m\)일 때, \(CM_{AB}\)를 계산하시오.<br />
                         <img src="images\test.04.04.png" onload="this.width/=2;this.onload=null;"><br />
                         <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
-                        <input type="submit" class="submit_quiz" value="확인" answer="-9" hint="\( CM_{AB} = (1/2) \times DM_{BA} = (1/2) \times 0.6 \times 30 \)">
+                        <input type="submit" class="submit_quiz" value="확인" answer="-9" hint="\( CM_{AB} = (1/2) \times M_{BA} \)">
                         <span class="span_quiz"></span>
                     </div>
                 </li>
@@ -196,7 +196,7 @@
                 <li>
                     <a href="" class="li_test">확인 질문</a>
                     <div hidden>
-                        다음과 같이 왼쪽과 오른쪽 부재에 FEM이 작용하는 경우, 절점 B의 \(FEM\)을 계산하시오.<br />
+                        다음과 같이 왼쪽과 오른쪽 부재에 \(FEM\)이 작용하는 경우, 절점 B의 \(FEM\)을 계산하시오.<br />
                         <img src="images\test.04.05.png" onload="this.width/=2;this.onload=null;"><br />
                         <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
                         <input type="submit" class="submit_quiz" value="확인" answer="25" hint ="10 + 15">
@@ -222,7 +222,7 @@
                 <li>
                     <a href="" class="li_test">확인 질문</a>
                     <div hidden>
-                        다음과 같이 FEM이 작용하는 경우, 절점 B의 \(RM\)을 계산하시오.<br />
+                        다음과 같이 \(FEM\)이 작용하는 경우, 절점 B의 \(RM\)을 계산하시오.<br />
                         <img src="images\test.04.05.png" onload="this.width/=2;this.onload=null;"><br />
                         <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;"> \(kN \cdot m\)
                         <input type="submit" class="submit_quiz" value="확인" answer="-25" hint ="-(10 + 15)">
@@ -735,7 +735,7 @@
                             \( DF_{CD} = K_{CD} / (K_{BC} + K_{CD}) = (2K/3) / (4K/5 + 2K/3) = 6/11, DF_{DC} = K_{CD} / (K_{CD} + 0) = 1 \)
                         </li>
                         <li>
-                            타단힌지이고 임의의 위치에 집중하중이 작용하는 부재 AB의 \(FEM\)은 \(H_{AB} = 0, \, H_{BA} = +P(ab^2+a^2b/2)L^2 = +20(5 \times 10^2 + 5^2 \times 10/2)15^2 = +83.333 kN \cdot m \)이다.
+                            타단힌지이고 임의의 위치에 집중하중이 작용하는 부재 AB의 \(FEM\)은 \(H_{AB} = 0, \, H_{BA} = +P(ab^2+a^2b/2)/L^2 = +20 \times (5 \times 10^2 + 5^2 \times 10/2)/15^2 = +83.333 kN \cdot m \)이다.
                             양단연속이고 등분포하중이 작용하는 부재 BC의 \(FEM\)은 \(C_{BC} = -wL^2/12 = -3.6 \times 20^2 / 12 = -120 kN \cdot m = -C_{CB} \)이다.
                             타단힌지이고 등분포하중이 작용하는 부재 CD의 \(FEM\)은 \(H_{CD} = -wL^2/8 = -3.6 \times 18^2 / 8 = -145.8 kN \cdot m, H_{DC} = 0 \)이다.
                             이 <b>\(FEM\)을 각 부재의 끝단에 가</b>한다. 이때, <b>고정단이 아닌 점 B, C는 가상으로 고정</b>된다.
@@ -839,7 +839,7 @@
                     고찰
                     <ol>
                         <li>
-                            <b>점에 모멘트가 직접 가해지는 경우 \(FEM\)이 아니라 \(RM\)으로 설정</b>한다.
+                            점에 직접 가해지는 모멘트는 점을 회전시키므로 가상으로 고정된 점을 해제하는 \(RM\)이 가해진 것과 동일하다. 따라서 <b>점에 모멘트가 직접 가해지는 경우 \(FEM\)이 아니라 \(RM\)으로 설정</b>한다.
                         </li>
                         <li>
                             <b>타단힌지 부재의 연속이 아닌 끝단의 \(RM\)도 \(DF\)에 따라 \(DM\)으로 분배</b>한다.
@@ -900,10 +900,10 @@
                     고찰
                     <ol>
                         <li>
-                            <b>점에 모멘트가 직접 가해지는 경우 \(FEM\)이 아니라 \(RM\)으로 설정</b>한다.
+                            점에 직접 가해지는 모멘트는 점을 회전시키므로 가상으로 고정된 점을 해제하는 \(RM\)이 가해진 것과 동일하다. 따라서 <b>점에 모멘트가 직접 가해지는 경우 \(FEM\)이 아니라 \(RM\)으로 설정</b>한다.
                         </li>
                         <li>
-                            <b>\(FEM\)이 없더라도, \(RM\)이 있으면 \(DF\)에 따라 \(DM\)으로 분배</b>한다. 이는 점을 회전시키므로 가상으로 고정된 점을 해제하는 것과 동일하다.
+                            <b>\(FEM\)이 없더라도, \(RM\)이 있으면 \(DF\)에 따라 \(DM\)으로 분배</b>한다.
                         </li>
                     </ol>
                 </li>
@@ -956,7 +956,7 @@
             <h3><a name="example"></a>예제 9</h3>
             <ul>
                 <li>
-                    문제 : 다음의 3차 부정정구조물에서 모멘트분배법을 활용하여 부재 AB의 재단모멘트 \(M_{OA} = 0\)이 되는 \(P\)를 구하시오. 단, 모든 부재에서 \(EI\)는 일정하다.
+                    문제 : 다음의 3차 부정정구조물에서 모멘트분배법을 활용하여 부재 OA의 재단모멘트 \(M_{OA} = 0\)이 되는 \(P\)를 구하시오. 단, 모든 부재에서 \(EI\)는 일정하다.
                     <p><img src="images\04.20.png" onload="this.width/=2;"></p>
                 </li>
                 <li>
@@ -1111,7 +1111,7 @@
             <h3><a name="re_view_quiz"></a>복습 퀴즈</h3>
             <ol class="ol_quiz">
                 <li>
-                    다음의 1차 부정정구조물에서 \(K_{AB} = \square EI\)이다. \(\square\)를 계산하시오<br />
+                    모든 부재의 \(E\)가 일정한 다음 1차 부정정구조물에서 \(K_{AB} = \square EI\)이다. \(\square\)를 계산하시오<br />
                     <img src="images\quiz.03.01.png" onload="this.width/=2;this.onload=null;"><br />
                     <input type="number" class="input_quiz" placeholder="답을 숫자로 입력하세요" ondrop="return false;" onpaste="return false;">
                     <input type="submit" class="submit_quiz" value="확인" answer="1">
